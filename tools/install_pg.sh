@@ -1,4 +1,4 @@
-apt-get update && apt-get install -y libreadline-dev bison flex zlib1g-dev
+yum install -y libreadline-devel zlib-devel
 
 curl -L -O https://ftp.postgresql.org/pub/source/v13.4/postgresql-13.4.tar.gz
 
