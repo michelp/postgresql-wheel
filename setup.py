@@ -21,7 +21,6 @@ setup(
     packages=["postgresql"],
     package_data={"postgresql": package_files("postgresql")},
     setup_requires=["cffi"],
-    install_requires=["plumbum"],
     cffi_modules=["postgresql/build.py:ffibuilder"],
     python_requires=">=3.8,<3.9",
 )
