@@ -13,7 +13,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      # Used to host cibuildwheel
       - uses: actions/setup-python@v2
 
       - name: Install cibuildwheel
@@ -24,10 +23,6 @@ jobs:
         env:
           CIBW_ENVIRONMENT:
           CIBW_BEFORE_ALL_LINUX: ${{ format('sh tools/install_pg.sh {0}', github.ref) }}
-
-      - name: Run tests
-        run: pytest tests/
-
       - uses: actions/upload-artifact@v2
         with:
           path: ./wheelhouse/*.whl
