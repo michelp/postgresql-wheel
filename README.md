@@ -22,11 +22,16 @@ The wheel can be installed with pip:
 $ pip install postgresql-wheel
 ```
 
+Postgres binaries in the package can be found in the directory pointed
+to by the `postgresql.pg_bin` global variable.  `initdb` and `pg_ctl`
+functions are provided for convenience:
+
 ```py3
 >>> from postgresql import initdb, pg_ctl
 >>> initdb('-D testdatabase')
 >>> pg_ctl('-D testdatabase -o "-p 5678" -l testdatabase.log start')
 
+>>> import psycopg2
 >>> c = psycopg2.connect("postgres://localhost:5678/postgres") # connect with local client
 >>> with c.cursor() as q:
 >>>     q.execute("select version()")
