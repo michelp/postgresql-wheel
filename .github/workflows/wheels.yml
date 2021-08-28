@@ -1,6 +1,8 @@
 name: Build Wheels
 
-on: 
+on:
+  push:
+  pull_request:
   release:
     types:
       - created
@@ -30,6 +32,11 @@ jobs:
         with:
           path: ./wheelhouse/*.whl
 
+  upload_pypi:
+    needs: [build_wheels]
+    runs-on: ubuntu-latest
+    if: github.event_name == 'release' && github.event.action == 'published'
+    steps:
       - uses: actions/download-artifact@v2
         with:
           name: artifact
