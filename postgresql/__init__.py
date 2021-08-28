@@ -1,10 +1,9 @@
-from cffi import FFI
+from pathlib import Path
 
-ffibuilder = FFI()
+from plumbum import local
+import postgresql
 
-ffibuilder.set_source("_postgresql", "")
+local.path.append(Path(postgresql.__file__).parent / "bin")
 
-ffibuilder.cdef("")
-
-if __name__ == "__main__":
-    ffibuilder.compile(verbose=True)
+initdb = local.cmd.initdb
+pg_ctl = local.cmd.pg_ctl

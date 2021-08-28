@@ -11,7 +11,7 @@ def package_files(directory):
     return paths
 
 
-extra_files = package_files("postgresql/binary")
+extra_files = package_files("postgresql")
 
 setup(
     name="postgresql_wheel",
@@ -21,6 +21,7 @@ setup(
     packages=["postgresql"],
     package_data={"postgresql": extra_files},
     setup_requires=["cffi"],
-    cffi_modules=["postgresql/__init__.py:ffibuilder"],
+    install_requires=["plumbum"],
+    cffi_modules=["postgresql/build.py:ffibuilder"],
     python_requires=">=3.8,<3.9",
 )
