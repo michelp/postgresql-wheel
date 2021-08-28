@@ -22,5 +22,5 @@ setup(
     package_data={"postgresql": package_files("postgresql")},
     setup_requires=["cffi"],
     cffi_modules=["postgresql/build.py:ffibuilder"],
-    python_requires=">=3.8,<3.9",
+    python_requires=">=3.7,<3.10",
 )
