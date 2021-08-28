@@ -1,19 +1,26 @@
 # postgresql-wheel
 
-A Python wheel for Linux containing the entire PostgreSQL database
-server.
+A Python wheel for Linux containing a locally installable PostgreSQL
+database server.
+
+All servers run as the Python process user in a local path, so this
+wheel does not require root or sudo privledges.
+
+Servers can be setup and torn down in test fixtures with no additional
+outside dependencies.
+
+Currently this wheel only works for most flavors of Linux.  MacOS and
+maybe even Windows are doable... by someone else.
+
+Postgres is compiled in the same "manylinux" environments provided by
+the [cibuildwheel](https://cibuildwheel.readthedocs.io/en/stable/)
+tool using [Github Actions]() and directly archived into the wheel's "package_data".
 
 The wheel can be installed with pip:
 
 ```
 $ pip install postgresql-wheel
 ```
-
-This wheel contains a complete PostgreSQL database server, compiled on
-the same "manylinux" platforms provided by the cibuildwheel tool and
-directly archived into the wheel's "package_data".  All servers run as
-the Python process user so this wheel does not require root or sudo
-privledges.
 
 ```py3
 >>> import postgresql, psycopg2
