@@ -14,7 +14,7 @@ def package_files(directory):
 extra_files = package_files("postgresql_wheel/binary")
 
 setup(
-    name="postgresql_wheel",
+    name="postgresql-wheel",
     version="13.4",
     description="PostgreSQL in a Python Wheel.",
     author="Michel Pelletier",
