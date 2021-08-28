@@ -23,16 +23,15 @@ $ pip install postgresql-wheel
 ```
 
 ```py3
->>> import postgresql, psycopg2
->>> postgresql.initdb(D="testdatabase")                        # initialize a local database
->>> postgresql.pg_ctl("start", D="testdatabase", o="-p 5456")  # start local database
+>>> from postgresql import initdb, pg_ctl
+>>> initdb('-D testdatabase')
+>>> pg_ctl('-D testdatabase -o "-p 5678" -l testdatabase.log start')
 
->>> c = psycopg2.connect("postgres://localhost:5456/postgres") # connect with local client
-In [6]: with c.cursor() as q:
-   ...:     q.execute("select version()")
-   ...:     print(q.fetchall())
-   ...: 
-   ...: 
+>>> c = psycopg2.connect("postgres://localhost:5678/postgres") # connect with local client
+>>> with c.cursor() as q:
+>>>     q.execute("select version()")
+>>>     print(q.fetchall())
+...
 [('PostgreSQL 13.4 on x86_64-pc-linux-gnu, compiled by gcc (GCC) 8.3.1 20190311 (Red Hat 8.3.1-3), 64-bit',)]
 
 ```

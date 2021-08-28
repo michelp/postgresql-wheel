@@ -5,14 +5,14 @@ import postgresql
 pg_bin = Path(postgresql.__file__).parent / "bin"
 
 
-def initdb(*args, **kwargs):
-    args.insert(pg_bin / "initdb", 0)
-    return check_output(*args, **kwargs)
+def initdb(cmdline):
+    cmdline = str(pg_bin / "initdb") + " " + cmdline
+    return check_output(cmdline, shell=True)
 
 
-def pg_ctl(*args, **kwargs):
-    args.insert(pg_bin / "pg_ctl", 0)
-    return check_output(*args, **kwargs)
+def pg_ctl(cmdline):
+    cmdline = str(pg_bin / "pg_ctl") + " " + cmdline
+    return check_output(cmdline, shell=True)
 
 
 from . import _version
