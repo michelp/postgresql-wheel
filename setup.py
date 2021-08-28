@@ -11,17 +11,16 @@ def package_files(directory):
     return paths
 
 
-extra_files = package_files("postgresql_wheel/binary")
+extra_files = package_files("postgresql/binary")
 
 setup(
-    name="postgresql-wheel",
+    name="postgresql_wheel",
     version="13.4",
-    description="PostgreSQL in a Python Wheel.",
+    description="PostgreSQL Server compiled into a Python Wheel.",
     author="Michel Pelletier",
-    packages=["postgresql_wheel"],
-    package_data={"postgresql_wheel": extra_files},
-    setup_requires=["cffi>=1.0.0"],
-    install_requires=["psycopg2-binary"],
-    cffi_modules=["postgresql_wheel/__init__.py:ffibuilder"],
-    python_requires=">=3.7,<3.10",
+    packages=["postgresql"],
+    package_data={"postgresql": extra_files},
+    setup_requires=["cffi"],
+    cffi_modules=["postgresql/__init__.py:ffibuilder"],
+    python_requires=">=3.8,<3.9",
 )

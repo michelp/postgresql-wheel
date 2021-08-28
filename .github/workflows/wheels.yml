@@ -22,7 +22,8 @@ jobs:
       - name: Build wheels
         run: python -m cibuildwheel --output-dir wheelhouse
         env:
-          CIBW_BEFORE_ALL_LINUX: "bash tools/install_pg.sh"
+          CIBW_ENVIRONMENT:
+          CIBW_BEFORE_ALL_LINUX: ${{ format('sh tools/install_pg.sh {0}', github.ref) }}
 
       - name: Run tests
         run: pytest tests/
