@@ -1,6 +1,7 @@
-from setuptools import setup
-
 import os
+
+import versioneer
+from setuptools import setup
 
 
 def package_files(directory):
@@ -11,15 +12,14 @@ def package_files(directory):
     return paths
 
 
-extra_files = package_files("postgresql")
-
 setup(
     name="postgresql_wheel",
-    version="13.4",
+    version=versioneer.get_version(),
+    cmdclass=versioneer.get_cmdclass(),
     description="PostgreSQL Server compiled into a Python Wheel.",
     author="Michel Pelletier",
     packages=["postgresql"],
-    package_data={"postgresql": extra_files},
+    package_data={"postgresql": package_files("postgresql")},
     setup_requires=["cffi"],
     install_requires=["plumbum"],
     cffi_modules=["postgresql/build.py:ffibuilder"],
