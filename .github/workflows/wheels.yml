@@ -24,7 +24,6 @@ jobs:
       - name: Build wheels
         run: python -m cibuildwheel --output-dir wheelhouse
         env:
-          CIBW_ENVIRONMENT:
           CIBW_BEFORE_ALL_LINUX: ${{ format('sh tools/install_pg.sh {0}', github.ref) }}
       - uses: actions/upload-artifact@v2
         with:

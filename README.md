@@ -25,7 +25,8 @@ $ pip install postgresql-wheel
 ```
 
 Postgres binaries in the package can be found in the directory pointed
-to by the `postgresql.pg_bin` global variable.  `initdb` and `pg_ctl`
+to by the `postgresql.pg_bin` global variable.  Function wrappers
+around all of the postgres binary programs, like `initdb` and `pg_ctl`
 functions are provided for convenience:
 
 ```py3
@@ -40,6 +41,26 @@ functions are provided for convenience:
 >>>     print(q.fetchall())
 ...
 [('PostgreSQL 13.4 on x86_64-pc-linux-gnu, compiled by gcc (GCC) 8.3.1 20190311 (Red Hat 8.3.1-3), 64-bit',)]
+>>> pg_ctl('-D testdatabase stop)
 
+```
+
+For the purposes of testing, convenience functions are provided for
+setting up and tearing down databases:
+
+```py3
+>>> pgdata, con_str = postgresql.setup()
+>>> postgresql.psql(f'-h {con_str} -c "select version()"')
+>>> postgresql.teardown(pgdata)
+```
+
+There is also a pytest fixture called `tmp_postgres` that returns a
+new connection string to a temporary databse local domain socket, and
+can be used in a pytest:
+
+```py3
+>>> from postgresql import tmp_postgres
+>>> def test_foo(tmp_postgres):
+...    postgresql.psql(f'-h {tmp_postgres} -c "select version()")
 ```
 

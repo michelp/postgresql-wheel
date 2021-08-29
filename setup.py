@@ -21,6 +21,7 @@ setup(
     packages=["postgresql"],
     package_data={"postgresql": package_files("postgresql")},
     setup_requires=["cffi"],
+    install_requires=["pytest"],
     cffi_modules=["postgresql/build.py:ffibuilder"],
     python_requires=">=3.7,<3.10",
 )
