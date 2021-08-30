@@ -9,4 +9,4 @@ def test_setup_teardown():
 
 def test_fixture(tmp_postgres):
     pgdata, con_str = tmp_postgres
-    postgresql.psql(f'-h {con_str} -c "select version()"')
+    postgresql.psql(f'-h "{con_str}" -c "select version()"')
