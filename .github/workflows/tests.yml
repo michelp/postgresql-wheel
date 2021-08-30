@@ -24,6 +24,6 @@ jobs:
         
     - name: Build
       run: |
-        pip install pytest postgresql-wheel --upgrade pip
+        sudo pip install pytest postgresql-wheel --upgrade pip
         python setup.py develop
         python -m pytest postgresql.tests
