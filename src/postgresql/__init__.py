@@ -61,7 +61,7 @@ def teardown(pgdata):
 @pytest.fixture
 def tmp_postgres():
     pgdata, con_str = setup()
-    yield con_str
+    yield pgdata, con_str
     teardown(pgdata)
 
 
