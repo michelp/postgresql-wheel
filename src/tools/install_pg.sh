@@ -7,11 +7,11 @@ else
 fi
 
 yum install -y zlib-devel readline-devel
-curl -L -O https://ftp.postgresql.org/pub/source/v13.4/postgresql-${VERSION}.tar.gz
+curl -L -O https://ftp.postgresql.org/pub/source/v${VERSION}/postgresql-${VERSION}.tar.gz
 
 tar -xzf postgresql-${VERSION}.tar.gz
 cd postgresql-${VERSION}
-./configure --prefix=`pwd`/../postgresql
+./configure --prefix=`pwd`/../src/postgresql
 make -j 4
 make install
 cd ..

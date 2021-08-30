@@ -8,7 +8,8 @@ def package_files(directory):
     paths = []
     for (path, directories, filenames) in os.walk(directory):
         for filename in filenames:
-            paths.append(os.path.join("..", path, filename))
+            print(os.path.join(path, filename))
+            paths.append(os.path.join("..", "..", path, filename))
     return paths
 
 
@@ -26,10 +27,11 @@ setup(
     url="https://github.com/michelp/postgresql-wheel",
     author="Michel Pelletier",
     packages=["postgresql"],
-    package_data={"postgresql": package_files("postgresql")},
+    package_dir={"postgresql": "src/postgresql"},
+    package_data={"postgresql": package_files("src/postgresql")},
     setup_requires=["cffi"],
     install_requires=["pytest"],
-    cffi_modules=["postgresql/build.py:ffibuilder"],
+    cffi_modules=["src/postgresql/build.py:ffibuilder"],
     python_requires=">=3.7,<3.10",
     license="Apache License 2.0",
     keywords=[

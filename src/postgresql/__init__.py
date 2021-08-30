@@ -27,9 +27,12 @@ dropuser           pgbench            pg_dump            pg_resetwal        pg_u
 """.split()
 
 
+__all__ = ["setup", "teardown", "tmp_postgres"]
+
 this = sys.modules[__name__]
 for p in progs:
     setattr(this, p, prog(p))
+    __all__.append(p)
 
 
 def setup(pgdata=None, log="db_test.log", user="postgres"):
