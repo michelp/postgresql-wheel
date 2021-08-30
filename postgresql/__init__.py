@@ -34,7 +34,7 @@ for p in progs:
 
 def setup(pgdata=None, log="db_test.log", user="postgres"):
     if pgdata is None:
-        pgdata = TemporaryDirectory().name
+        pgdata = TemporaryDirectory()
 
     log = Path(log)
     try:
@@ -42,16 +42,16 @@ def setup(pgdata=None, log="db_test.log", user="postgres"):
     except FileNotFoundError:
         pass
 
-    initdb(f"-D {pgdata} --auth-local=trust --no-sync -U postgres")
-    pg_ctl(f'-D {pgdata} -o "-k {pgdata} -h \\"\\"" -l {log} start')
+    initdb(f"-D {pgdata.name} --auth-local=trust --no-sync -U postgres")
+    pg_ctl(f'-D {pgdata.name} -o "-k {pgdata.name} -h \\"\\"" -l {log} start')
     sleep(3)
-    con_str = f"host={pgdata} user={user}"
+    con_str = f"host={pgdata.name} user={user}"
     return pgdata, con_str
 
 
 def teardown(pgdata):
-    msg = pg_ctl(f"-D {pgdata} stop")
-    shutil.rmtree(pgdata)
+    msg = pg_ctl(f"-D {pgdata.name} stop")
+    pgdata.cleanup()
     return msg
 
 
