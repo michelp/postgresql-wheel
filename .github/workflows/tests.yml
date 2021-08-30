@@ -27,4 +27,4 @@ jobs:
         sudo apt install -y libreadline-dev zlib1g-dev
         bash src/tools/install_pg.sh refs/tags/13.4.1
         sudo python setup.py install
-        python -m pytest postgresql.tests
+        python -m pytest --pyargs postgresql.tests
