@@ -55,7 +55,7 @@ setting up and tearing down databases:
 ```
 
 There is also a pytest fixture called `tmp_postgres` that returns a
-new connection string to a temporary databse local domain socket, and
+new connection string to a temporary database local domain socket, and
 can be used in a pytest:
 
 ```py3
