@@ -6,13 +6,15 @@ else
     VERSION=13.4
 fi
 
-yum install -y zlib-devel readline-devel
+yum install -y dnf-plugins-core epel-release
+yum config-manager --set-enabled powertools
+yum install -y zlib-devel readline-devel uuid-devel libxml2-devel libxslt-devel
 curl -L -O https://ftp.postgresql.org/pub/source/v${VERSION}/postgresql-${VERSION}.tar.gz
 
 tar -xzf postgresql-${VERSION}.tar.gz
 cd postgresql-${VERSION}
-./configure --prefix=`pwd`/../src/postgresql
-make -j 4
-make install
+./configure --prefix=`pwd`/../src/postgresql --with-ossp-uuid --with-libxml --with-libxslt
+make -j 4 world-bin
+make install-world-bin
 cd ..
 
