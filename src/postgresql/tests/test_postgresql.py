@@ -1,5 +1,3 @@
-import os
-
 import postgresql
 from postgresql import tmp_postgres
 
