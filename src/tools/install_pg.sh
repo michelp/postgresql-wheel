@@ -8,8 +8,8 @@ fi
 
 export DEBIAN_FRONTEND=noninteractive
 
-apt update
-apt install -y zlib1g-dev libreadline-dev libossp-uuid-dev libxml2-dev libxslt1-dev curl make gcc
+sudo apt update
+sudo apt install -y zlib1g-dev libreadline-dev libossp-uuid-dev libxml2-dev libxslt1-dev curl make gcc
 curl -L -O https://ftp.postgresql.org/pub/source/v${VERSION}/postgresql-${VERSION}.tar.gz
 
 tar -xzf postgresql-${VERSION}.tar.gz
