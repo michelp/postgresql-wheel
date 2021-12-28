@@ -6,10 +6,9 @@ else
     VERSION=13.4
 fi
 
-export DEBIAN_FRONTEND=noninteractive
-
-apt update
-apt install -y zlib1g-dev libreadline-dev libossp-uuid-dev libxml2-dev libxslt1-dev curl make gcc
+yum install -y dnf-plugins-core epel-release
+yum config-manager --set-enabled powertools
+yum install -y zlib-devel readline-devel uuid-devel libxml2-devel libxslt-devel
 curl -L -O https://ftp.postgresql.org/pub/source/v${VERSION}/postgresql-${VERSION}.tar.gz
 
 tar -xzf postgresql-${VERSION}.tar.gz
