@@ -15,7 +15,7 @@ sudo apt install -y zlib1g-dev libreadline-dev libossp-uuid-dev libxml2-dev \
                     libxslt1-dev curl make gcc pkg-config libgeos-dev libxml2-utils \
                     libjson-c-dev proj-bin g++ libsqlite3-dev libtiff-dev \
                     libcurl4-gnutls-dev libprotobuf-c-dev libgdal-dev libsfcgal-dev \
-                    libproj-dev
+                    libproj-dev protobuf-c-compiler
 
 # Build Postgresql
 curl -L -O https://ftp.postgresql.org/pub/source/v${VERSION}/postgresql-${VERSION}.tar.gz
