@@ -41,7 +41,7 @@ functions are provided for convenience:
 >>>     print(q.fetchall())
 ...
 [('PostgreSQL 13.4 on x86_64-pc-linux-gnu, compiled by gcc (GCC) 8.3.1 20190311 (Red Hat 8.3.1-3), 64-bit',)]
->>> pg_ctl('-D testdatabase stop)
+>>> pg_ctl('-D testdatabase stop')
 
 ```
 
@@ -61,6 +61,6 @@ can be used in a pytest:
 ```py3
 >>> from postgresql import tmp_postgres
 >>> def test_foo(tmp_postgres):
-...    postgresql.psql(f'-h {tmp_postgres} -c "select version()")
+...    postgresql.psql(f'-h {tmp_postgres} -c "select version()"')
 ```
 
