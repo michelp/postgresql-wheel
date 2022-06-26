@@ -24,7 +24,7 @@ jobs:
       - name: Build wheels
         run: python -m cibuildwheel --output-dir wheelhouse
         env:
-          CIBW_BEFORE_ALL_LINUX: ${{ format('bash src/tools/install_pg.sh {0}', github.ref) }}
+          CIBW_BEFORE_ALL_LINUX: ${{ format('bash src/tools/install_pg_rpm.sh {0}', github.ref) }}
       - uses: actions/upload-artifact@v2
         with:
           path: ./wheelhouse/*.whl
